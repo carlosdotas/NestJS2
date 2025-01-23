@@ -79,6 +79,7 @@ const productRoutesData = [
   { path: '/products/:id', method: 'delete', tags: ['Produtos'], summary: 'Deleta um produto específico', description: 'Deleta um produto específico com base no ID fornecido.' },
 ];
 
+
 // Adicionar rotas de usuários e produtos ao Swagger
 configureSwaggerRoutes(userRoutesData);
 configureSwaggerRoutes(productRoutesData);
