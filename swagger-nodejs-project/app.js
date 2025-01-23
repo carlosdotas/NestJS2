@@ -71,6 +71,7 @@ const userRoutesData = [
   { path: '/users/:id', method: 'delete', tags: ['Usuários'], summary: 'Deleta um usuário específico', description: 'Deleta um usuário específico com base no ID fornecido.' },
 ];
 
+
 const productRoutesData = [
   { path: '/products', method: 'get', tags: ['Produtos'], summary: 'Lista todos os produtos', description: 'Retorna a lista de produtos cadastrados.' },
   { path: '/products', method: 'post', tags: ['Produtos'], summary: 'Cria um novo produto', description: 'Cria um novo produto com os dados fornecidos.' },
