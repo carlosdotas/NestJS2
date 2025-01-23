@@ -1,0 +1,42 @@
+export const routes = [
+  {
+    path: '/products',
+    method: 'get',
+    action: fetchProducts,
+    tags: ['Produtos'],
+    summary: 'Lista todos os produtos',
+    description: 'Retorna a lista de produtos cadastrados.',
+  },
+  {
+    path: '/products',
+    method: 'post',
+    action: createProduct,
+    tags: ['Produtos'],
+    summary: 'Cria um novo produto',
+    description: 'Cria um novo produto com os dados fornecidos.',
+  },
+  {
+    path: '/products/:id',
+    method: 'get',
+    action: fetchProductById,
+    tags: ['Produtos'],
+    summary: 'Retorna um produto específico',
+    description: 'Retorna os detalhes de um produto com base no ID fornecido.',
+  },
+  {
+    path: '/products/:id',
+    method: 'put',
+    action: updateProduct,
+    tags: ['Produtos'],
+    summary: 'Atualiza um produto',
+    description: 'Atualiza os dados de um produto existente.',
+  },
+  {
+    path: '/products/:id',
+    method: 'delete',
+    action: deleteProduct,
+    tags: ['Produtos'],
+    summary: 'Deleta um produto específico',
+    description: 'Deleta um produto específico com base no ID fornecido.',
+  },
+];
