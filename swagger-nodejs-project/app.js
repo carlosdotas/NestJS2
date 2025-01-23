@@ -1,6 +1,7 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import combinedRoutes from './routes/combinedRoutes.js';
+import { userRoutesData, productRoutesData } from './routes/combinedRoutes.js';
 
 const app = express();
 const PORT = 3000;
@@ -24,10 +25,7 @@ const swaggerDefinition = {
       description: 'Servidor local',
     },
   ],
-  tags: [
-    { name: 'Usuários', description: 'Endpoints relacionados aos usuários' },
-    { name: 'Produtos', description: 'Endpoints relacionados aos produtos' },
-  ],
+  tags: [],
   paths: {},
   components: {
     responses: {
@@ -62,34 +60,15 @@ const configureSwaggerRoutes = (routesData) => {
   });
 };
 
-// Definir as rotas para Swagger
-const userRoutesData = [
-  { path: '/users', method: 'get', tags: ['Usuários'], summary: 'Lista todos os usuários', description: 'Retorna a lista de usuários cadastrados.' },
-  { path: '/users', method: 'post', tags: ['Usuários'], summary: 'Cria um novo usuário', description: 'Cria um novo usuário com os dados fornecidos.' },
-  { path: '/users/:id', method: 'get', tags: ['Usuários'], summary: 'Retorna um usuário específico', description: 'Retorna os detalhes de um usuário com base no ID fornecido.' },
-  { path: '/users/:id', method: 'put', tags: ['Usuários'], summary: 'Atualiza um usuário', description: 'Atualiza os dados de um usuário existente.' },
-  { path: '/users/:id', method: 'delete', tags: ['Usuários'], summary: 'Deleta um usuário específico', description: 'Deleta um usuário específico com base no ID fornecido.' },
-];
-
-
-const productRoutesData = [
-  { path: '/products', method: 'get', tags: ['Produtos'], summary: 'Lista todos os produtos', description: 'Retorna a lista de produtos cadastrados.' },
-  { path: '/products', method: 'post', tags: ['Produtos'], summary: 'Cria um novo produto', description: 'Cria um novo produto com os dados fornecidos.' },
-  { path: '/products/:id', method: 'get', tags: ['Produtos'], summary: 'Retorna um produto específico', description: 'Retorna os detalhes de um produto com base no ID fornecido.' },
-  { path: '/products/:id', method: 'put', tags: ['Produtos'], summary: 'Atualiza um produto', description: 'Atualiza os dados de um produto existente.' },
-  { path: '/products/:id', method: 'delete', tags: ['Produtos'], summary: 'Deleta um produto específico', description: 'Deleta um produto específico com base no ID fornecido.' },
-];
-
-
 // Adicionar rotas de usuários e produtos ao Swagger
 configureSwaggerRoutes(userRoutesData);
 configureSwaggerRoutes(productRoutesData);
 
-// Middleware para as rotas combinadas
-app.use('/api', combinedRoutes);
-
 // Middleware para o Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
+
+// Middleware para as rotas combinadas
+app.use('/api', combinedRoutes);
 
 // Iniciar o servidor
 app.listen(PORT, () => {

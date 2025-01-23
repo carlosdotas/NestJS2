@@ -64,4 +64,21 @@ router.get('/products/:id', productActions.fetchProductById);
 router.put('/products/:id', productActions.updateProduct);
 router.delete('/products/:id', productActions.deleteProduct);
 
+// Definições de rotas para documentação do Swagger
+export const userRoutesData = [
+  { path: '/users', method: 'get', tags: ['Usuários'], summary: 'Lista todos os usuários', description: 'Retorna a lista de usuários cadastrados.' },
+  { path: '/users', method: 'post', tags: ['Usuários'], summary: 'Cria um novo usuário', description: 'Cria um novo usuário com os dados fornecidos.' },
+  { path: '/users/:id', method: 'get', tags: ['Usuários'], summary: 'Retorna um usuário específico', description: 'Retorna os detalhes de um usuário com base no ID fornecido.' },
+  { path: '/users/:id', method: 'put', tags: ['Usuários'], summary: 'Atualiza um usuário', description: 'Atualiza os dados de um usuário existente.' },
+  { path: '/users/:id', method: 'delete', tags: ['Usuários'], summary: 'Deleta um usuário específico', description: 'Deleta um usuário específico com base no ID fornecido.' },
+];
+
+export const productRoutesData = [
+  { path: '/products', method: 'get', tags: ['Produtos'], summary: 'Lista todos os produtos', description: 'Retorna a lista de produtos cadastrados.' },
+  { path: '/products', method: 'post', tags: ['Produtos'], summary: 'Cria um novo produto', description: 'Cria um novo produto com os dados fornecidos.' },
+  { path: '/products/:id', method: 'get', tags: ['Produtos'], summary: 'Retorna um produto específico', description: 'Retorna os detalhes de um produto com base no ID fornecido.' },
+  { path: '/products/:id', method: 'put', tags: ['Produtos'], summary: 'Atualiza um produto', description: 'Atualiza os dados de um produto existente.' },
+  { path: '/products/:id', method: 'delete', tags: ['Produtos'], summary: 'Deleta um produto específico', description: 'Deleta um produto específico com base no ID fornecido.' },
+];
+
 export default router;
