@@ -2,6 +2,8 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import SwaggerConfig from './SwaggerConfig.js';
 import combinedRoutes from './routes/combinedRoutes.js';
+import { userRoutesDatas } from './routes/usersRoutes.js';
+
 import { userRoutesData, productRoutesData } from './routes/combinedRoutes.js';
 
 const app = express();
@@ -17,9 +19,9 @@ swaggerConfig.configureRoutes(productRoutesData);
 // Middleware for Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig.getSwaggerDefinition()));
 
-// Middleware for combined routes
-app.use('/api', combinedRoutes);
-
+userRoutesDatas.forEach(route => {
+  app[route.method](route.path, route.action);
+})
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
