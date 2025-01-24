@@ -18,7 +18,10 @@ const handleError = (res, error, message) => res.status(500).json({ message, err
 
 const productActions = {
     fetchProducts: async (req, res) => {
-        try { res.json(await Product.findAll()); } 
+        try {
+            const products = await Product.findAll();
+            res.json({ data: products });
+        } 
         catch (error) { handleError(res, error, 'Erro ao buscar produtos.'); }
     },
     createProduct: async (req, res) => {

@@ -25,16 +25,6 @@ class SwaggerConfig {
                     description: 'Servidor de produção',
                 },
             ],
-            tags: [
-                {
-                    name: 'Auth',
-                    description: 'Endpoints relacionados à autenticação'
-                },
-                {
-                    name: 'Users',
-                    description: 'Endpoints relacionados a usuários'
-                },
-            ],
             paths: {},
             components: {
                 securitySchemes: {
@@ -59,28 +49,7 @@ class SwaggerConfig {
                         description: 'Não autorizado. O token JWT está ausente ou inválido.'
                     },
                 },
-                schemas: {
-                    User: {
-                        type: 'object',
-                        properties: {
-                            id: {
-                                type: 'string',
-                                description: 'ID do usuário',
-                                example: '12345'
-                            },
-                            name: {
-                                type: 'string',
-                                description: 'Nome do usuário',
-                                example: 'João Silva'
-                            },
-                            email: {
-                                type: 'string',
-                                description: 'E-mail do usuário',
-                                example: 'joao.silva@example.com'
-                            },
-                        },
-                    },
-                },
+
             },
             security: [
                 {
@@ -119,7 +88,7 @@ class SwaggerConfig {
             };
         });
 
-        routesData.forEach(route => {
+         routesData.forEach (route => {
             this.router.use(this.express.json()); 
             if (route.authRequired) {
                 this.router[route.method](route.path, this.verifyToken, route.action);
