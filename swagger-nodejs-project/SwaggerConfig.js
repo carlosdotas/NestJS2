@@ -1,7 +1,8 @@
 // SwaggerConfig.js
 class SwaggerConfig {
-    constructor(PORT, router, express) { 
+    constructor(PORT, router, express, cors) { 
         this.router = router;
+        this.cors = cors;
         this.express = express;
         this.swaggerDefinition = {
             openapi: '3.0.0',
@@ -61,7 +62,7 @@ class SwaggerConfig {
     
 
     // Function to configure routes
-    configureRoutes(routesData, router) {
+    configureRoutes(routesData) {
         routesData.forEach(route => {
             const swaggerPath = route.path.replace(/:([a-zA-Z0-9_]+)/g, '{$1}');
             this.swaggerDefinition.paths[swaggerPath] = this.swaggerDefinition.paths[swaggerPath] || {};
@@ -89,7 +90,17 @@ class SwaggerConfig {
         });
 
          routesData.forEach (route => {
+
+
+            const corsOptions = {
+                origin: '*',
+                methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+                allowedHeaders: ['Content-Type', 'Authorization'],
+            };
+
+            this.router.use(this.cors(corsOptions));            
             this.router.use(this.express.json()); 
+            
             if (route.authRequired) {
                 this.router[route.method](route.path, this.verifyToken, route.action);
             } else {

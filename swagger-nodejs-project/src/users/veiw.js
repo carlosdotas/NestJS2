@@ -22,7 +22,7 @@ const createRoute = (method, path, action, summary, authRequired, requestBody = 
 
 const userRoutesDatas = [
     createRoute('get', `${path}`, fetch, summary.get, false),
-    createRoute('post', `${path}`, create, summary.post, true, {
+    createRoute('post', `${path}`, create, summary.post, false, {
         required: true,
         content: {
             'application/json': {
@@ -38,7 +38,7 @@ const userRoutesDatas = [
             },
         },
     }),
-    createRoute('get', `${path}/:id`, fetchById, summary.get, true, {}, [
+    createRoute('get', `${path}/:id`, fetchById, summary.get, false, {}, [
         {
             name: 'id',
             in: 'path',
@@ -47,7 +47,7 @@ const userRoutesDatas = [
             schema: { type: 'integer' },
         },
     ]),
-    createRoute('put', `${path}/:id`, update, summary.put, true, {}, [
+    createRoute('put', `${path}/:id`, update, summary.put, false, {}, [
         {
             name: 'id',
             in: 'path',
@@ -56,7 +56,7 @@ const userRoutesDatas = [
             schema: { type: 'integer' },
         },
     ]),
-    createRoute('delete', `${path}/:id`, deleteById, summary.delete, true, {}, [
+    createRoute('delete', `${path}/:id`, deleteById, summary.delete, false, {}, [
         {
             name: 'id',
             in: 'path',
